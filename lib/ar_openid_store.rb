@@ -11,7 +11,7 @@ class ActiveRecordStore < OpenID::Store::Interface
     Association.create!(:server_url => server_url,
                        :handle     => assoc.handle,
                        :secret     => assoc.secret,
-                       :issued     => assoc.issued,
+                       :issued     => assoc.issued.to_i,
                        :lifetime   => assoc.lifetime,
                        :assoc_type => assoc.assoc_type)
   end
