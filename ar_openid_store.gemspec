@@ -2,7 +2,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "her"
+  s.name        = "ar_openid_store"
   s.version     = "0.0.1"
   s.authors     = ["Dan Wrong"]
   s.email       = ["danwrong@example.com.com"]
