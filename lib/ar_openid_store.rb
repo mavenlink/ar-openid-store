@@ -46,12 +46,12 @@ class ActiveRecordStore < OpenID::Store::Interface
     return true
   end
   
-  def cleanup_nonces
+  def self.cleanup_nonces
     now = Time.now.to_i
     Nonce.delete_all(["timestamp > ? OR timestamp < ?", now + OpenID::Nonce.skew, now - OpenID::Nonce.skew])
   end
 
-  def cleanup_associations
+  def self.cleanup_associations
     now = Time.now.to_i
     Association.delete_all(['issued + lifetime > ?',now])
   end
