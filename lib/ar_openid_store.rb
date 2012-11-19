@@ -53,7 +53,7 @@ class ActiveRecordStore < OpenID::Store::Interface
 
   def self.cleanup_associations
     now = Time.now.to_i
-    Association.delete_all(['issued + lifetime > ?',now])
+    Association.delete_all(['issued + lifetime < ?',now])
   end
 
 end
