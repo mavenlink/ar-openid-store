@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version     = "0.0.2"
   s.authors     = ["Dan Webb"]
   s.email       = ["dan@danwebb.net"]
+  s.summary     = "Adds ActiveRecord store for the ruby-openid library"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
