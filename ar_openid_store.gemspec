@@ -3,9 +3,9 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "ar_openid_store"
-  s.version     = "0.0.1"
-  s.authors     = ["Dan Wrong"]
-  s.email       = ["danwrong@example.com.com"]
+  s.version     = "0.0.2"
+  s.authors     = ["Dan Webb"]
+  s.email       = ["dan@danwebb.net"]
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
