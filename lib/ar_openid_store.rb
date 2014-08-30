@@ -18,9 +18,9 @@ class ActiveRecordStore < OpenID::Store::Interface
 
   def get_association(server_url, handle=nil)
     assocs = if handle.blank?
-        Association.find_all_by_server_url(server_url)
+        Association.where(server_url: server_url)
       else
-        Association.find_all_by_server_url_and_handle(server_url, handle)
+        Association.where(server_url: server_url).where(handle: handle)
       end
 
     assocs.reverse.each do |assoc|
@@ -40,7 +40,7 @@ class ActiveRecordStore < OpenID::Store::Interface
   end
 
   def use_nonce(server_url, timestamp, salt)
-    return false if Nonce.find_by_server_url_and_timestamp_and_salt(server_url, timestamp, salt)
+    return false if Nonce.where(server_url: server_url).where(timestamp: timestamp).where(salt: salt).first
     return false if (timestamp - Time.now.to_i).abs > OpenID::Nonce.skew
     Nonce.create!(:server_url => server_url, :timestamp => timestamp, :salt => salt)
     return true
