@@ -36,7 +36,7 @@ class ActiveRecordStore < OpenID::Store::Interface
   end
 
   def remove_association(server_url, handle)
-    Association.delete_all(['server_url = ? AND handle = ?', server_url, handle]) > 0
+    Association.where('server_url = ? AND handle = ?', server_url, handle).delete_all > 0
   end
 
   def use_nonce(server_url, timestamp, salt)
@@ -48,12 +48,12 @@ class ActiveRecordStore < OpenID::Store::Interface
 
   def self.cleanup_nonces
     now = Time.now.to_i
-    Nonce.delete_all(["timestamp > ? OR timestamp < ?", now + OpenID::Nonce.skew, now - OpenID::Nonce.skew])
+    Nonce.where("timestamp > ? OR timestamp < ?", now + OpenID::Nonce.skew, now - OpenID::Nonce.skew).delete_all
   end
 
   def self.cleanup_associations
     now = Time.now.to_i
-    Association.delete_all(['issued + lifetime < ?',now])
+    Association.where('issued + lifetime < ?', now).delete_all
   end
 
 end
